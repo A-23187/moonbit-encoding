@@ -19,6 +19,7 @@ test "decode" {
     t in [
       ("bee", Err(@hex.OddLengthHexStringError)),
       ("-1", Err(@hex.InvalidHexCharError('-'))),
+      ("中文", Err(@hex.InvalidHexCharError('中'))),
     ] {
     let (str, result) = t
     assert_eq!(@hex.decode?(str), result)
